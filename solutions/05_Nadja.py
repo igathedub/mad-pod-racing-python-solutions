@@ -14,34 +14,33 @@ BOOST_WINKEL = 5          # Boost nur, wenn wir fast gerade auf das Ziel zufahre
 # ============================================
 
 
-boost_verfuegbar = False   # Ab League Wood1: wenn auf True gesetzt: merkt sich, ob wir den Boost schon verbraucht haben
+boost_verfuegbar = False   # Höchstens einmal pro Rennen benutzen!
 
 
 while True:
-   x, y, next_checkpoint_x, next_checkpoint_y, next_checkpoint_dist, next_checkpoint_angle = [int(i) for i in input().split()]
-   opponent_x, opponent_y = [int(i) for i in input().split()]
-
-
-   winkel = abs(next_checkpoint_angle)
-
+   # Kommentare:
+   # x und y sind deine Koordinaten.
+   # next_checkpoint_x, next_checkpoint_y sind Koordinaten des nächsten Checkpoints
+   # next_checkpoint_dist Wie weit wir davon entfernt sind
+   # next_checkpoint_angle Winkel zwischen unserer Nase und des nächsten Checkpoints
+   
+   x, y, next_checkpoint_x, next_checkpoint_y, next_checkpoint_dist, winkel = [abs(int(i)) for i in input().split()]
 
    # Schub je nach Kurvenwinkel bestimmen
    if winkel > SCHARFE_KURVE:
-       schub = 0
+       schub = 0 # Vollbremsung
    elif winkel > MITTLERE_KURVE:
        schub = LANGSAM_SCHUB
    else:
-       schub = 100
-
-
+       schub = 100 # Schneller geht es nicht
+co
    # Vor dem Checkpoint zusätzlich bremsen
    if next_checkpoint_dist < BREMS_DISTANZ:
-       schub = min(schub, LANGSAM_SCHUB)
-
+       schub = min(schub, LANGSAM_SCHUB) # Minimum aus den beiden Variablen
 
    # Boost einsetzen: nur einmal, nur auf langer, gerader Strecke
    if boost_verfuegbar and next_checkpoint_dist > BOOST_DISTANZ and winkel < BOOST_WINKEL:
-       print(f"{next_checkpoint_x} {next_checkpoint_y} BOOST")
-       boost_verfuegbar = False
+       print(next_checkpoint_x, next_checkpoint_y, "BOOST")
+       boost_verfuegbar = False # danach ist BOOST verbraucht
    else:
-       print(f"{next_checkpoint_x} {next_checkpoint_y} {schub}")
+       print(next_checkpoint_x, next_checkpoint_y, schub)
