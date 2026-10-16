@@ -13,7 +13,6 @@ last_y = None
 
 while True:
     x, y, checkpoint_x, checkpoint_y, distance, angle = map(int, input().split())
-    opponent_x, opponent_y = map(int, input().split())
 
     if last_x is None:
         velocity_x, velocity_y = 0, 0
