@@ -19,7 +19,6 @@ next_checkpoint = {}
 
 while True:
     x, y, checkpoint_x, checkpoint_y, distance, angle = map(int, input().split())
-    opponent_x, opponent_y = map(int, input().split())
 
     current_checkpoint = (checkpoint_x, checkpoint_y)
     if previous_checkpoint is not None and previous_checkpoint != current_checkpoint:
