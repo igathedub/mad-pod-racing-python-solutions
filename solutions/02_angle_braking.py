@@ -4,7 +4,6 @@ boost_available = True
 
 while True:
     x, y, checkpoint_x, checkpoint_y, distance, angle = map(int, input().split())
-    opponent_x, opponent_y = map(int, input().split())
 
     absolute_angle = abs(angle)
     if absolute_angle > 90:
